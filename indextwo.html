@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periyodik Tablo - Doğrulama</title>
+    <style>
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .tableelement
+        {
+            border: 2px dashed #aaa;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(40, 38, 38);
+        }
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 100px;
+        }
+        td,tr {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            vertical-align: middle;
+            cursor: drop;
+        }
+        .element {
+            width: 80px;
+            height: 80px;
+            background-color: #4b4646;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            float: left;
+            margin:auto;
+            border: 2px solid rgb(75, 65, 65);
+            margin: 10px;
+            color: white;
+        }
+        .element:hover
+        {
+            opacity:0.7;
+            box-shadow: 5px 10px #888888;
+        }
+        .correct {
+            background-color: #c8e6c9;
+            border: 2px solid #4caf50;
+        }
+        .incorrect {
+            background-color: #ffcdd2;
+            border: 2px solid #f44336;
+        }
+        #checkButton {
+            margin: 20px;
+            padding: 20px;
+            cursor: pointer;
+            background-color: #333;
+            color:#ffffff;
+        }
+        .alkalimetaller{
+            background-color:#3c6240;
+            opacity: 0.5;
+        }
+        .yarimetaller{
+            background-color:#876c41;
+            opacity: 0.5;
+        }
+        .aktinitler{
+            background-color:#756d15;
+            opacity: 0.5;
+        }
+        .toprakalkalimetaller{
+            background-color:#6f2c4f;
+            opacity: 0.5;
+        }
+        .ametaller{
+            background-color:#39417d;
+            opacity: 0.5;
+        }
+        .bilinmeyen{
+            background-color:#283031;
+            opacity: 0.5;
+        }
+        .gecismetallari{
+            background-color:#451e60;
+            opacity: 0.5;
+        }
+        .soygazlar{
+            background-color:#461f3e;
+            opacity: 0.5;
+        }
+        .aragecismetallari{
+            background-color:#1d3d27;
+            opacity: 0.5;
+        }
+        .lantinitler{
+            background-color:#2c184f;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Periyodik Tablo</a>
+        <a href="indexthree.html">Oyun</a>
+        <a href="indextwo.html">Oyun</a>
+    </div>
+<table>
+    <tr>
+            <td class="dropzone tableelement alkalimetaller" data-element="H"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="dropzone tableelement soygazlar" data-element="He"></td>
+    </tr>
+    <tr>
+            <td class="dropzone tableelement alkalimetaller" data-element="Li"></td>
+            <td class="dropzone tableelement toprakalkalimetaller" data-element="Be"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="dropzone tableelement yarimetaller" data-element="B"></td>
+            <td class="dropzone tableelement ametaller" data-element="C"></td>
+            <td class="dropzone tableelement ametaller" data-element="N"></td>
+            <td class="dropzone tableelement ametaller" data-element="O"></td>
+            <td class="dropzone tableelement ametaller" data-element="F"></td>
+            <td class="dropzone tableelement soygazlar" data-element="Ne"></td>
+    </tr>
+    <tr>
+        <td class="dropzone tableelement alkalimetaller" data-element="Na"></td>
+        <td class="dropzone tableelement toprakalkalimetaller" data-element="Mg"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="dropzone tableelement aragecismetallari" data-element="Al"></td>
+        <td class="dropzone tableelement yarimetaller" data-element="Si"></td>
+        <td class="dropzone tableelement ametaller" data-element="P"></td>
+        <td class="dropzone tableelement ametaller" data-element="S"></td>
+        <td class="dropzone tableelement ametaller" data-element="Cl"></td>
+        <td class="dropzone tableelement soygazlar" data-element="Ar"></td>
+</tr>
+<tr>
+    <td class="dropzone tableelement alkalimetaller" data-element="K"></td>
+    <td class="dropzone tableelement toprakalkalimetaller" data-element="Ca"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Sc"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ti"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="V"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Cr"></td>
+
+
+    <td class="dropzone tableelement gecismetallari" data-element="Mn"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Fe"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Co"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ni"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Cu"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Zn"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Ga"></td>
+    <td class="dropzone tableelement yarimetaller" data-element="Ge"></td>
+    <td class="dropzone tableelement yarimetaller" data-element="As"></td>
+    <td class="dropzone tableelement ametaller" data-element="Se"></td>
+    <td class="dropzone tableelement ametaller" data-element="Br"></td>
+    <td class="dropzone tableelement soygazlar" data-element="Kr"></td>
+</tr>
+<tr>
+    <td class="dropzone tableelement alkalimetaller" data-element="Rb"></td>
+    <td class="dropzone tableelement toprakalkalimetaller" data-element="Sr"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Y"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Zr"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Nb"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Mo"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Tc"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ru"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Rh"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Pd"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ag"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Cd"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="In"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Sn"></td>
+    <td class="dropzone tableelement yarimetaller" data-element="Sb"></td>
+    <td class="dropzone tableelement yarimetaller" data-element="Te"></td>
+    <td class="dropzone tableelement ametaller" data-element="I"></td>
+    <td class="dropzone tableelement soygazlar" data-element="Xe"></td>
+</tr>
+<tr>
+    <td class="dropzone tableelement alkalimetaller" data-element="Cs"></td>
+    <td class="dropzone tableelement toprakalkalimetaller" data-element="Ba"></td>
+    <td class="dropzone tableelement lantinitler" data-element="La"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Hf"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ta"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="W"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Re"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Os"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Ir"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Pt"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Au"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Hg"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Tl"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Pb"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Bi"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="Po"></td>
+    <td class="dropzone tableelement aragecismetallari" data-element="At"></td>
+    <td class="dropzone tableelement soygazlar" data-element="Rn"></td>
+</tr>
+<tr>
+    <td class="dropzone tableelement alkalimetaller" data-element="Fr"></td>
+    <td class="dropzone tableelement toprakalkalimetaller" data-element="Ra"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Ac"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Rf"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Db"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Sg"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Bh"></td>
+    <td class="dropzone tableelement gecismetallari" data-element="Hs"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Mt"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Ds"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Rg"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Cn"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Nh"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Fl"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Mc"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Lv"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Ts"></td>
+    <td class="dropzone tableelement bilinmeyen" data-element="Og"></td>
+</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="dropzone tableelement lantinitler" data-element="Ce"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Pr"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Nd"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Pm"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Sm"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Eu"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Gd"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Tb"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Dy"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Ho"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Er"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Tm"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Yb"></td>
+    <td class="dropzone tableelement lantinitler" data-element="Lu"></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="dropzone tableelement aktinitler" data-element="Th"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Pa"></td>
+    <td class="dropzone tableelement aktinitler" data-element="U"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Np"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Pu"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Am"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Cm"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Bk"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Cf"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Es"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Fm"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Md"></td>
+    <td class="dropzone tableelement aktinitler" data-element="No"></td>
+    <td class="dropzone tableelement aktinitler" data-element="Lr"></td>
+    <td></td>
+</tr>
+</table>
+<div id="elements">
+    <div class="element" draggable="true" data-element="H">H</div>
+    <div class="element" draggable="true" data-element="He">He</div>
+    <div class="element" draggable="true" data-element="Li">Li</div>
+    <div class="element" draggable="true" data-element="Be">Be</div>
+    <div class="element" draggable="true" data-element="B">B</div>
+    <div class="element" draggable="true" data-element="C">C</div>
+    <div class="element" draggable="true" data-element="N">N</div>
+    <div class="element" draggable="true" data-element="O">O</div>
+    <div class="element" draggable="true" data-element="F">F</div>
+    <div class="element" draggable="true" data-element="Ne">Ne</div>
+    <div class="element" draggable="true" data-element="Na">Na</div>
+    <div class="element" draggable="true" data-element="Mg">Mg</div>
+    <div class="element" draggable="true" data-element="Al">Al</div>
+    <div class="element" draggable="true" data-element="Si">Si</div>
+    <div class="element" draggable="true" data-element="P">P</div>
+    <div class="element" draggable="true" data-element="P">S</div>
+    <div class="element" draggable="true" data-element="Cl">Cl</div>
+    <div class="element" draggable="true" data-element="Ar">Ar</div>
+    <div class="element" draggable="true" data-element="K">K</div>
+    <div class="element" draggable="true" data-element="Ca">Ca</div>
+    <div class="element" draggable="true" data-element="Sc">Sc</div>
+    <div class="element" draggable="true" data-element="Ti">Ti</div>
+    <div class="element" draggable="true" data-element="V">V</div>
+    <div class="element" draggable="true" data-element="Cr">Cr</div>
+    <div class="element" draggable="true" data-element="Mn">Mn</div>
+    <div class="element" draggable="true" data-element="Fe">Fe</div>
+    <div class="element" draggable="true" data-element="Co">Co</div>
+    <div class="element" draggable="true" data-element="Ni">Ni</div>
+    <div class="element" draggable="true" data-element="Cu">Cu</div>
+    <div class="element" draggable="true" data-element="Zn">Zn</div>
+    <div class="element" draggable="true" data-element="Ga">Ga</div>
+    <div class="element" draggable="true" data-element="Ge">Ge</div>
+    <div class="element" draggable="true" data-element="As">As</div>
+    <div class="element" draggable="true" data-element="Se">Se</div>
+    <div class="element" draggable="true" data-element="Br">Br</div>
+    <div class="element" draggable="true" data-element="Kr">Kr</div>
+    <div class="element" draggable="true" data-element="Rb">Rb</div>
+    <div class="element" draggable="true" data-element="Sr">Sr</div>
+    <div class="element" draggable="true" data-element="Y">Y</div>
+    <div class="element" draggable="true" data-element="Zr">Zr</div>
+    <div class="element" draggable="true" data-element="Nb">Nb</div>
+    <div class="element" draggable="true" data-element="Mo">Mo</div>
+    <div class="element" draggable="true" data-element="Tc">Tc</div>
+    <div class="element" draggable="true" data-element="Ru">Ru</div>
+    <div class="element" draggable="true" data-element="Rh">Rh</div>
+    <div class="element" draggable="true" data-element="Pd">Pd</div>
+    <div class="element" draggable="true" data-element="Ag">Ag</div>
+    <div class="element" draggable="true" data-element="Cd">Cd</div>
+    <div class="element" draggable="true" data-element="In">In</div>
+    <div class="element" draggable="true" data-element="Sn">Sn</div>
+    <div class="element" draggable="true" data-element="Sb">Sb</div>
+    <div class="element" draggable="true" data-element="Te">Te</div>
+    <div class="element" draggable="true" data-element="I">I</div>
+    <div class="element" draggable="true" data-element="Xe">Xe</div>
+    <div class="element" draggable="true" data-element="Cs">Cs</div>
+    <div class="element" draggable="true" data-element="Ba">Ba</div>
+    <div class="element" draggable="true" data-element="La">La</div>
+    <div class="element" draggable="true" data-element="Ce">Ce</div>
+    <div class="element" draggable="true" data-element="Pr">Pr</div>
+    <div class="element" draggable="true" data-element="Nd">Nd</div>
+    <div class="element" draggable="true" data-element="Pm">Pm</div>
+    <div class="element" draggable="true" data-element="Sm">Sm</div>
+    <div class="element" draggable="true" data-element="Eu">Eu</div>
+    <div class="element" draggable="true" data-element="Gd">Gd</div>
+    <div class="element" draggable="true" data-element="Tb">Tb</div>
+    <div class="element" draggable="true" data-element="Dy">Dy</div>
+    <div class="element" draggable="true" data-element="Ho">Ho</div>
+    <div class="element" draggable="true" data-element="Er">Er</div>
+    <div class="element" draggable="true" data-element="Tm">Tm</div>
+    <div class="element" draggable="true" data-element="Yb">Yb</div>
+    <div class="element" draggable="true" data-element="Lu">Lu</div>
+    <div class="element" draggable="true" data-element="Hf">Hf</div>
+    <div class="element" draggable="true" data-element="Hf">Ta</div>
+    <div class="element" draggable="true" data-element="Hf">W</div>
+    <div class="element" draggable="true" data-element="Hf">Re</div>
+    <div class="element" draggable="true" data-element="Hf">Os</div>
+    <div class="element" draggable="true" data-element="Hf">Ir</div>
+    <div class="element" draggable="true" data-element="Hf">Pt</div>
+    <div class="element" draggable="true" data-element="Hf">Au</div>
+    <div class="element" draggable="true" data-element="Hf">Hg</div>
+    <div class="element" draggable="true" data-element="Hf">Tl</div>
+    <div class="element" draggable="true" data-element="Hf">Pb</div>
+    <div class="element" draggable="true" data-element="Hf">Bi</div>
+    <div class="element" draggable="true" data-element="Hf">Po</div>
+    <div class="element" draggable="true" data-element="Hf">At</div>
+    <div class="element" draggable="true" data-element="Hf">Rn</div>
+    <div class="element" draggable="true" data-element="Hf">Fr</div>
+    <div class="element" draggable="true" data-element="Hf">Ra</div>
+    <div class="element" draggable="true" data-element="Hf">Ac</div>
+    <div class="element" draggable="true" data-element="Hf">Th</div>
+    <div class="element" draggable="true" data-element="Hf">Pa</div>
+    <div class="element" draggable="true" data-element="Hf">U</div>
+    <div class="element" draggable="true" data-element="Hf">Np</div>
+    <div class="element" draggable="true" data-element="Hf">Pu</div>
+    <div class="element" draggable="true" data-element="Hf">Am</div>
+    <div class="element" draggable="true" data-element="Hf">Cm</div>
+    <div class="element" draggable="true" data-element="Hf">Bk</div>
+    <div class="element" draggable="true" data-element="Hf">Cf</div>
+    <div class="element" draggable="true" data-element="Hf">Es</div>
+    <div class="element" draggable="true" data-element="Hf">Fm</div>
+    <div class="element" draggable="true" data-element="Hf">Md</div>
+    <div class="element" draggable="true" data-element="Hf">No</div>
+    <div class="element" draggable="true" data-element="Hf">Lr</div>
+    <div class="element" draggable="true" data-element="Rf">Rf</div>
+    <div class="element" draggable="true" data-element="Db">Db</div>
+    <div class="element" draggable="true" data-element="Sg">Sg</div>
+    <div class="element" draggable="true" data-element="Bh">Bh</div>
+    <div class="element" draggable="true" data-element="Hf">Hs</div>
+    <div class="element" draggable="true" data-element="Hf">Mt</div>
+    <div class="element" draggable="true" data-element="Hf">Ds</div>
+    <div class="element" draggable="true" data-element="Rg">Rn</div>
+    <div class="element" draggable="true" data-element="Cn">Cn</div>
+    <div class="element" draggable="true" data-element="Nh">Nh</div>
+    <div class="element" draggable="true" data-element="Fl">Fl</div>
+    <div class="element" draggable="true" data-element="Mc">Mc</div>
+    <div class="element" draggable="true" data-element="Lv">Lv</div>
+    <div class="element" draggable="true" data-element="Ts">Ts</div>
+    <div class="element" draggable="true" data-element="Og">Og</div>
+
+
+</div>
+<button id="checkButton">Doğrula</button>
+
+
+<script>
+    const elements = document.querySelectorAll(".element");
+    const dropzones = document.querySelectorAll(".dropzone");
+
+
+    elements.forEach(element => {
+        element.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", e.target.dataset.element);
+        });
+    });
+
+
+    dropzones.forEach(dropzone => {
+        dropzone.addEventListener("dragover", (e) => {
+            e.preventDefault(); // Varsayılan davranışı engelle
+        });
+
+
+        dropzone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const droppedElement = e.dataTransfer.getData("text/plain");
+            const targetElement = dropzone.dataset.element;
+
+
+            // Elementi bırakma işlemi
+            dropzone.innerText = droppedElement;
+            dropzone.setAttribute("data-placed", droppedElement); // Bırakılan elementi kaydet
+
+
+            // Bırakılan elementi gizle
+            const elementToHide = document.querySelector(`.element[data-element="${droppedElement}"]`);
+            if (elementToHide) {
+                elementToHide.style.display = 'none'; // Elementi gizle
+            }
+        });
+    });
+
+
+    document.getElementById("checkButton").addEventListener("click", () => {
+        dropzones.forEach(dropzone => {
+            const placedElement = dropzone.getAttribute("data-placed");
+            const correctElement = dropzone.dataset.element;
+
+
+            if (placedElement === correctElement) {
+                dropzone.classList.add("correct");
+            } else if (placedElement) {
+                dropzone.classList.add("incorrect");
+            }
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
