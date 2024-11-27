@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periyodik Tablo</title>
+    <style>
+        .sayi{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(40, 38, 38);
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            margin-top:15px ;
+        }
+        tr, td {
+            padding: 15px;
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .element {
+            cursor: pointer;
+            color: white;
+            border: 2px solid rgb(40, 38, 38);
+            position: relative;
+        }
+        .element:hover {
+            opacity: 0.7;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(29, 28, 28);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            border: 2px solid  rgb(29, 28, 28);
+            z-index:0;
+        }
+        .element:hover .overlay {
+            opacity: 1;
+            z-index:0;
+        }
+        .alkalimetaller{
+            background-color: #3c6240;
+        }
+        .yarimetaller{
+            background-color: #876c41;
+        }
+        .aktinitler{
+            background-color:#756d15;
+        }
+        .toprakalkalimetaller{
+            background-color: #6f2c4f;
+        }
+        .ametaller{
+            background-color: #39417d;
+        }
+        .bilinmeyen{
+            background-color:#283031;
+        }
+        .gecismetallari{
+            background-color: #451e60;
+        }
+        .soygazlar{
+            background-color:#461f3e;
+        }
+        .aragecismetallari{
+            background-color: #1d3d27;
+        }
+        .lantinitler{
+            background-color: #2c184f;
+        }
+        .text{
+            color:white;
+            position: sticky;
+            margin-top:150px;
+            bottom: 0;
+            position: relative;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .highlight {
+            border: 5px solid white;
+        }
+        .alkalimetallera{
+            background-color: #3c6240;
+            color:white;
+        }
+        .yarimetallera{
+            background-color: #876c41;
+            color:white;
+        }
+        .aktinitlera{
+            background-color:#756d15;
+            color:white;
+        }
+        .toprakalkalimetallera{
+            background-color: #6f2c4f;
+            color:white;
+        }
+        .ametallera{
+            background-color: #39417d;
+            color:white;
+        }
+        .bilinmeyena{
+            background-color:#283031;
+            color:white;
+        }
+        .gecismetallaria{
+            background-color: #451e60;
+            color:white;
+        }
+        .soygazlara{
+            background-color:#461f3e;
+            color:white;
+        }
+        .aragecismetallaria{
+            background-color: #1d3d27;
+            color:white;
+        }
+        .lantinitlera{
+            background-color: #2c184f;
+            color:white;
+        }
+        button{
+            margin:10px;
+            padding:10px;
+
+
+        }
+        #infoBox {
+            color: white;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 200px;
+            background-color: rgb(19, 18, 18);
+            border: 2px solid rgb(19, 18, 18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            border-radius: 50px;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+        #elementImage {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0px;
+        }
+        #elementText {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Periyodik Tablo</a>
+        <a href="indexthree.html">Oyun</a>
+        <a href="indextwo.html">Oyun</a>
+        <button class="alkalimetallera" onclick="highlightElements('alkalimetaller')">Alkali Metaller</button>
+        <button class="yarimetallera" onclick="highlightElements('yarimetaller')">Yarı Metaller</button>
+        <button class="aktinitlera" onclick="highlightElements('aktinitler')">Aktinitler</button>
+        <button class="toprakalkalimetallera" onclick="highlightElements('toprakalkalimetaller')">Toprak Alkali Metaller</button>
+        <button class="ametallera" onclick="highlightElements('ametaller')">Ametaller</button>
+        <button class="bilinmeyena" onclick="highlightElements('bilinmeyen')">Bilinmeyen</button>
+        <button class="gecismetallaria" onclick="highlightElements('gecismetallari')">Geçiş Metalleri</button>
+        <button class="soygazlara" onclick="highlightElements('soygazlar')">Soygazlar</button>
+        <button class="aragecismetallaria" onclick="highlightElements('aragecismetallari')">Ara Geçiş Metalleri</button>
+        <button class="lantinitlera" onclick="highlightElements('lantinitler')">Lantinitler</button>
+        <button onclick="highlightElements('tümü')">Sıfırla</button>
+    </div>
+    <div id="overlay" onclick="closeInfoBox()"></div>
+    <div id="infoBox">
+        <h3 id="elementText"></h3>
+        <img id="elementImage" src="" alt="Element Resmi" />
+    </div>
+    <table>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma', 'images/H.jpeg')" ><div class="sayi">1</div><br>H
+                <div class="overlay">Hidrojen</div></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut','images/He.jpeg')" ><div class="sayi">2</div><br>He
+                <div class="overlay">Helyum</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/Li.jpeg')" ><div class="sayi">3</div><br>Li
+                <div class="overlay">Lityum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Be.jpeg')" ><div class="sayi">4</div><br>Be
+                <div class="overlay">Berilyum</div></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/B.jpeg')" ><div class="sayi">5</div><br>B
+                <div class="overlay">Bor</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/C.jpeg')" ><div class="sayi">6</div><br>C
+                <div class="overlay">Karbon</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/N.jpeg')" ><div class="sayi">7</div><br>N
+                <div class="overlay">Azot</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/O.jpeg')" ><div class="sayi">8</div><br>O
+                <div class="overlay">Oksijen</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/F.jpeg')" ><div class="sayi">9</div><br>F
+                <div class="overlay">Flor</div></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut' , 'images/Ne.jpeg')" ><div class="sayi">10</div>Ne
+                <div class="overlay">Neon</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/Na.jpeg')" ><div class="sayi">11</div>Na
+                <div class="overlay">Sodyum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Mg.jpeg')" ><div class="sayi">12</div>Mg
+                <div class="overlay">Magnezyum</div></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Al.jpeg')" ><div class="sayi">13</div>Al
+                <div class="overlay">Alüminyum</div></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/Si.jpeg')" ><div class="sayi">14</div>Si
+                <div class="overlay">Silisyum</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/P.jpeg')" ><div class="sayi">15</div>P
+                <div class="overlay">Fosfor</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/S.jpeg')" ><div class="sayi">16</div>S
+                <div class="overlay">Kükürt</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/Cl.jpeg')" ><div class="sayi">17</div>Cl
+                <div class="overlay">Klor</div></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut' , 'images/Ar.jpeg')" ><div class="sayi">18</div>Ar
+                <div class="overlay">Argon</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/K.jpeg')" ><div class="sayi">19</div>K
+                <div class="overlay">Potasyum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Ca.jpeg')" ><div class="sayi">20</div>Ca
+                <div class="overlay">Kalsiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Sc.jpeg')" ><div class="sayi">21</div>Sc
+                <div class="overlay">Skandiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ti.jpeg')" ><div class="sayi">22</div>Ti
+                <div class="overlay">Titanyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/V.jpeg')" ><div class="sayi">23</div>V
+                <div class="overlay">Vanadyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Cr.jpeg')" ><div class="sayi">24</div>Cr
+                <div class="overlay">Krom</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Mn.jpeg')" ><div class="sayi">25</div>Mn
+                <div class="overlay">Manganez</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Fe.jpeg')" ><div class="sayi">26</div>Fe
+                <div class="overlay">Demir</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Co.jpeg')" ><div class="sayi">27</div>Co
+                <div class="overlay">Kobalt</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ni.jpeg')" ><div class="sayi">28</div>Ni
+                <div class="overlay">Nikel</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Cu.jpeg')" ><div class="sayi">29</div>Cu
+                <div class="overlay">Bakır</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Zn.jpeg')" ><div class="sayi">30</div>Zn
+                <div class="overlay">Çinko</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Ga.jpeg')" ><div class="sayi">31</div>Ga
+                <div class="overlay">Galyum</div></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/Ge.jpeg')" ><div class="sayi">32</div>Ge
+                <div class="overlay">Germanyum</div></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/As.jpeg')" ><div class="sayi">33</div>As
+                <div class="overlay">Arsenik</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/Se.jpeg')" ><div class="sayi">34</div>Se
+                <div class="overlay">Selenyum</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/Br.jpeg')" ><div class="sayi">35</div>Br
+                <div class="overlay">Brom</div></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut' , 'images/Kr.jpeg')" ><div class="sayi">36</div>Kr
+                <div class="overlay">Kripton</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/Rb.jpeg')" ><div class="sayi">37</div>Rb
+                <div class="overlay">Rubidyum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Sr.jpeg')" ><div class="sayi">38</div>Sr
+                <div class="overlay">Stronsiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Y.jpeg')" ><div class="sayi">39</div>Y
+                <div class="overlay">İtriyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Zr.jpeg')" ><div class="sayi">40</div>Zr
+                <div class="overlay">Zirkonyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Nb.jpeg')" ><div class="sayi">41</div>Nb
+                <div class="overlay">Niyobyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Mo.jpeg')" ><div class="sayi">42</div>Mo
+                <div class="overlay">Molibden</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Tc.jpeg')" ><div class="sayi">43</div>Tc
+                <div class="overlay">Teknesyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ru.jpeg')" ><div class="sayi">44</div>Ru
+                <div class="overlay">Rutenyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Rh.jpeg')" ><div class="sayi">45</div>Rh
+                <div class="overlay">Rodyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Pd.jpeg')" ><div class="sayi">46</div>Pd
+                <div class="overlay">Paladyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ag.jpeg')" ><div class="sayi">47</div>Ag
+                <div class="overlay">Gümüş</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Cd.jpeg')" ><div class="sayi">48</div>Cd
+                <div class="overlay">Kadmiyum</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/In.jpeg')" ><div class="sayi">49</div>In
+                <div class="overlay">İndiyum</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Sn.jpeg')" ><div class="sayi">50</div>Sn
+                <div class="overlay">Kalay</div></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/Sb.jpeg')" ><div class="sayi">51</div>Sb
+                <div class="overlay">Antimon</div></td>
+            <td class="element yarimetaller" onclick="showText('elma armut elma armut' , 'images/Te.jpeg')" ><div class="sayi">52</div>Te
+                <div class="overlay">Tellür</div></td>
+            <td class="element ametaller" onclick="showText('elma armut elma armut' , 'images/I.jpeg')" ><div class="sayi">53</div>I
+                <div class="overlay">Iyot</div></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut' , 'images/Xe.jpeg')" ><div class="sayi">54</div>Xe
+                <div class="overlay">Ksenon</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/Cs.jpeg')" ><div class="sayi">55</div>Cs
+                <div class="overlay">Sezyum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Ba.jpeg')" ><div class="sayi">56</div>Ba
+                <div class="overlay">Baryum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/La.jpeg')" ><div class="sayi">57</div>La
+                <div class="overlay">Lantan</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Hf.jpeg')" ><div class="sayi">72</div>Hf
+                <div class="overlay">Hafniyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ta.jpeg')" ><div class="sayi">73</div>Ta
+                <div class="overlay">Tantal</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/W.jpeg')" ><div class="sayi">74</div>W
+                <div class="overlay">Volfram</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Re.jpeg')" ><div class="sayi">75</div>Re
+                <div class="overlay">Renyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Os.jpeg')" ><div class="sayi">76</div>Os
+                <div class="overlay">Osmiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Ir.jpeg')" ><div class="sayi">77</div>Ir
+                <div class="overlay">İridyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Pt.jpeg')" ><div class="sayi">78</div>Pt
+                <div class="overlay">Platin</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Au.jpeg')" ><div class="sayi">79</div>Au
+                <div class="overlay">Altın</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Hg.jpeg')" ><div class="sayi">80</div>Hg
+                <div class="overlay">Cıva</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Tl.jpeg')" ><div class="sayi">81</div>Tl
+                <div class="overlay">Talyum</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Pb.jpeg')" ><div class="sayi">82</div>Pb
+                <div class="overlay">Kurşun</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Bi.jpeg')" ><div class="sayi">83</div>Bi
+                <div class="overlay">Bizmut</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/Po.jpeg')" ><div class="sayi">84</div>Po
+                <div class="overlay">Polonyum</div></td>
+            <td class="element aragecismetallari" onclick="showText('elma armut elma armut' , 'images/At.jpeg')" ><div class="sayi">85</div>At
+                <div class="overlay">Astatin</div></td>
+            <td class="element soygazlar" onclick="showText('elma armut elma armut' , 'images/Rn.jpeg')" ><div class="sayi">86</div>Rn
+                <div class="overlay">Radon</div></td>
+        </tr>
+        <tr>
+            <td class="element alkalimetaller" onclick="showText('elma armut elma armut' , 'images/Fr.jpeg')" ><div class="sayi">87</div>Fr
+                <div class="overlay">Fransiyum</div></td>
+            <td class="element toprakalkalimetaller" onclick="showText('elma armut elma armut' , 'images/Ra.jpeg')" ><div class="sayi">88</div>Ra
+                <div class="overlay">Radyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Ac.jpeg')" ><div class="sayi">89</div>Ac
+                <div class="overlay">Aktinyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Rf.jpeg')" ><div class="sayi">104</div>Rf
+                <div class="overlay">Rutherfordiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Db.jpeg')" ><div class="sayi">105</div>Db
+                <div class="overlay">Dubniyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Sg.jpeg')" ><div class="sayi">106</div>Sg
+                <div class="overlay">Seaborgiyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Bh.jpeg')" ><div class="sayi">107</div>Bh
+                <div class="overlay">Bohriyum</div></td>
+            <td class="element gecismetallari" onclick="showText('elma armut elma armut' , 'images/Hs.jpeg')" ><div class="sayi">108</div>Hs
+                <div class="overlay">Hassiyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Mt.jpeg')" ><div class="sayi">109</div>Mt
+                <div class="overlay">Meitneriyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Ds.jpeg')" ><div class="sayi">110</div>Ds
+                <div class="overlay">Darmstadtiyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Rg.jpeg')" ><div class="sayi">111</div>Rg
+                <div class="overlay">Röntgenyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Cn.jpeg')" ><div class="sayi">112</div>Cn
+                <div class="overlay">Kopernikyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Nh.jpeg')" ><div class="sayi">113</div>Nh
+                <div class="overlay">Nihonyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Fl.jpeg')" ><div class="sayi">114</div>Fl
+                <div class="overlay">Flerovyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Mc.jpeg')" ><div class="sayi">115</div>Mc
+                <div class="overlay">Moskoviyum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Lv.jpeg')" ><div class="sayi">116</div>Lv
+                <div class="overlay">Livermoryum</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Ts.jpeg')" ><div class="sayi">117</div>Ts
+                <div class="overlay">Tennesin</div></td>
+            <td class="element bilinmeyen" onclick="showText('elma armut elma armut' , 'images/Og.jpeg')" ><div class="sayi">118</div>Og
+                <div class="overlay">Oganesson</div></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Ce.jpeg')" ><div class="sayi">58</div> Ce
+                <div class="overlay">Seryum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Pr.jpeg')" ><div class="sayi">59</div>Pr
+                <div class="overlay">Praseodimiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Nd.jpeg')" ><div class="sayi">60</div>Nd
+                <div class="overlay">Neodimyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Pm.jpeg')" ><div class="sayi">61</div>Pm
+                <div class="overlay">Prometyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Sm.jpeg')" ><div class="sayi">62</div>Sm
+                <div class="overlay">Samaryum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Eu.jpeg')" ><div class="sayi">63</div>Eu
+                <div class="overlay">Evropiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Gd.jpeg')" ><div class="sayi">64</div>Gd
+                <div class="overlay">Gadolinyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Tb.jpeg')" ><div class="sayi">65</div>Tb
+                <div class="overlay">Terbiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Dy.jpeg')" ><div class="sayi">66</div>Dy
+                <div class="overlay">Disprozyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Ho.jpeg')" ><div class="sayi">67</div>Ho
+                <div class="overlay">Holmiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Er.jpeg')" ><div class="sayi">68</div>Er
+                <div class="overlay">Erbiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Tm.jpeg')" ><div class="sayi">69</div>Tm
+                <div class="overlay">Tuylum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Yb.jpeg')" ><div class="sayi">70</div>Yb
+                <div class="overlay">İterbiyum</div></td>
+            <td class="element lantinitler" onclick="showText('elma armut elma armut' , 'images/Lu.jpeg')" ><div class="sayi">71</div>Lu
+                <div class="overlay">Lutesyum</div></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Th.jpeg')" ><div class="sayi">90</div>Th
+                <div class="overlay">Torium</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Pa.jpeg')" ><div class="sayi">91</div>Pa
+                <div class="overlay">Protaktinyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/U.jpeg')" ><div class="sayi">92</div>U
+                <div class="overlay">Uranyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Np.jpeg')" ><div class="sayi">93</div>Np
+                <div class="overlay">Neptünyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Pu.jpeg')" ><div class="sayi">94</div>Pu
+                <div class="overlay">Plütonyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Am.jpeg')" ><div class="sayi">95</div>Am
+                <div class="overlay">Amerikyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Cm.jpeg')" ><div class="sayi">96</div>Cm
+                <div class="overlay">Küriyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Bk.jpeg')" ><div class="sayi">97</div>Bk
+                <div class="overlay">Berkelyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Cf.jpeg')" ><div class="sayi">98</div>Cf
+                <div class="overlay">Kaliforniyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Es.jpeg')" ><div class="sayi">99</div>Es
+                <div class="overlay">Einsteinium</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Fm.jpeg')" ><div class="sayi">100</div> Fm
+                <div class="overlay">Fermiyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Md.jpeg')" ><div class="sayi">101</div>Md
+                <div class="overlay">Mendelevyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/No.jpeg')" ><div class="sayi">102</div>No
+                <div class="overlay">Nobelyum</div></td>
+            <td class="element aktinitler" onclick="showText('elma armut elma armut' , 'images/Lr.jpeg')" ><div class="sayi">103</div>Lr
+                <div class="overlay">Lavrensiyum</div></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+       
+    function showText(text, imagepath) {
+        const infoBox = document.getElementById('infoBox');
+        const elementText = document.getElementById('elementText');
+        const elementImage = document.getElementById('elementImage');
+        const overlay = document.getElementById('overlay');
+
+
+        elementText.textContent = text;
+        elementImage.src = imagepath;
+        infoBox.style.display = 'block';
+        overlay.style.display = 'block';
+    }
+
+
+    function closeInfoBox() {
+        const infoBox = document.getElementById('infoBox');
+        const overlay = document.getElementById('overlay');
+
+
+        infoBox.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+    </script>
+    <script>
+        function highlightElements(type) {
+            const elements = document.querySelectorAll('.element');
+           
+            elements.forEach(element => {
+                element.classList.remove('highlight');
+            });
+   
+            if (type === 'alkalimetaller') {
+                const alkalimetaller = document.querySelectorAll('.alkalimetaller');
+                alkalimetaller.forEach(alkalimetaller => {
+                    alkalimetaller.classList.add('highlight');
+                });
+            } else if (type === 'yarimetaller') {
+                const yarimetaller = document.querySelectorAll('.yarimetaller');
+                yarimetaller.forEach(yarimetaller => {
+                    yarimetaller.classList.add('highlight');
+                });
+            } else if (type === 'aktinitler') {
+                const aktinitler = document.querySelectorAll('.aktinitler');
+                aktinitler.forEach(aktinitler => {
+                    aktinitler.classList.add('highlight');
+                });
+            }
+            else if (type === 'toprakalkalimetaller') {
+                const toprakalkalimetaller = document.querySelectorAll('.toprakalkalimetaller');
+                toprakalkalimetaller.forEach(toprakalkalimetaller => {
+                    toprakalkalimetaller.classList.add('highlight');
+                });
+            } else if (type === 'ametaller') {
+                const ametaller = document.querySelectorAll('.ametaller');
+                ametaller.forEach(ametaller => {
+                    ametaller.classList.add('highlight');
+                });
+            }
+            else if (type === 'bilinmeyen') {
+                const bilinmeyen = document.querySelectorAll('.bilinmeyen');
+                bilinmeyen.forEach(bilinmeyen => {
+                    bilinmeyen.classList.add('highlight');
+                });
+            }
+            else if (type === 'gecismetallari') {
+                const gecismetallari = document.querySelectorAll('.gecismetallari');
+                gecismetallari.forEach(gecismetallari => {
+                    gecismetallari.classList.add('highlight');
+                });
+            }
+            else if (type === 'soygazlar') {
+                const soygazlar = document.querySelectorAll('.soygazlar');
+                soygazlar.forEach(soygazlar => {
+                    soygazlar.classList.add('highlight');
+                });
+            }
+            else if (type === 'aragecismetallari') {
+                const aragecismetallari = document.querySelectorAll('.aragecismetallari');
+                aragecismetallari.forEach(aragecismetallari => {
+                    aragecismetallari.classList.add('highlight');
+                });
+            }
+            else if (type === 'lantinitler') {
+                const lantinitler = document.querySelectorAll('.lantinitler');
+                lantinitler.forEach(lantinitler => {
+                    lantinitler.classList.add('highlight');
+                });
+            }  
+           
+        }
+    </script>
+</body>
+</html>
+
