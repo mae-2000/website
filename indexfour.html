@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periyodik Tablo - Doğrulama</title>
+    <style>
+        
+        .tableelement
+        {
+            border: 2px solid #aaa;
+            color:white;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar {
+            font-weight: bold;
+            font-size: 18px;
+        }
+    
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(40, 38, 38);
+        }
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 100px;
+        }
+        tr, td {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            border: 1px solid rgb(40, 38, 38);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .elma{
+            position:absolute;
+            border: 2px solid #aaa;
+            color:white;
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: -1000px;
+            margin-left: 400px;
+
+        }
+        .armut{
+            border: 2px solid #aaa;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .muz{
+            border: 2px solid #aaa;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Periyodik Tablo</a>
+        <a href="indexthree.html">Oyun</a>
+        <a href="indextwo.html">Oyun</a>
+        <a href="indexfour.html">Oyun</a>
+    </div>
+<table>
+    <tr>
+            <td class="tableelement" id="H" onclick="changeColor(this)">H</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="tableelement" id="He" onclick="changeColor(this)">He</td>
+    </tr>
+    <tr>
+            <td class="tableelement" id="Li" onclick="changeColor(this)">Li</td>
+            <td class="tableelement" id="Be" onclick="changeColor(this)">Be</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="tableelement" id="B" onclick="changeColor(this)">B</td>
+            <td class="tableelement" id="C" onclick="changeColor(this)">C</td>
+            <td class="tableelement" id="N" onclick="changeColor(this)">N</td>
+            <td class="tableelement" id="O" onclick="changeColor(this)">O</td>
+            <td class="tableelement" id="F" onclick="changeColor(this)">F</td>
+            <td class="tableelement" id="Ne" onclick="changeColor(this)">Ne</td>
+    </tr>
+    <tr>
+        <td class="tableelement" id="Na" onclick="changeColor(this)">Na</td>
+        <td class="tableelement" id="Mg" onclick="changeColor(this)">Mg</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="tableelement" id="Al" onclick="changeColor(this)">Al</td>
+        <td class="tableelement" id="Si" onclick="changeColor(this)">Si</td>
+        <td class="tableelement" id="P" onclick="changeColor(this)">P</td>
+        <td class="tableelement" id="S" onclick="changeColor(this)">S</td>
+        <td class="tableelement" id="Cl" onclick="changeColor(this)">Cl</td>
+        <td class="tableelement" id="Ar" onclick="changeColor(this)">Ar</td>
+</tr>
+<tr>
+    <td class="tableelement" id="K" onclick="changeColor(this)">K</td>
+    <td class="tableelement" id="Ca" onclick="changeColor(this)">Ca</td>
+    <td class="tableelement" id="Sc" onclick="changeColor(this)">Sc</td>
+    <td class="tableelement" id="Ti" onclick="changeColor(this)">Ti</td>
+    <td class="tableelement" id="V" onclick="changeColor(this)">V</td>
+    <td class="tableelement" id="Cr" onclick="changeColor(this)">Cr</td>
+
+
+    <td class="tableelement" id="Mn" onclick="changeColor(this)">Mn</td>
+    <td class="tableelement" id="Fe" onclick="changeColor(this)">Fe</td>
+    <td class="tableelement" id="Co" onclick="changeColor(this)">Co</td>
+    <td class="tableelement" id="Ni" onclick="changeColor(this)">Ni</td>
+    <td class="tableelement" id="Cu" onclick="changeColor(this)">Cu</td>
+    <td class="tableelement" id="Zn" onclick="changeColor(this)">Zn</td>
+    <td class="tableelement" id="Ga" onclick="changeColor(this)">Ga</td>
+    <td class="tableelement" id="Ge" onclick="changeColor(this)">Ge</td>
+    <td class="tableelement" id="As" onclick="changeColor(this)">As</td>
+    <td class="tableelement" id="Se" onclick="changeColor(this)">Se</td>
+    <td class="tableelement" id="Br" onclick="changeColor(this)">Br</td>
+    <td class="tableelement" id="Kr" onclick="changeColor(this)">Kr</td>
+</tr>
+<tr>
+    <td class="tableelement" id="Rb" onclick="changeColor(this)">Rb</td>
+    <td class="tableelement" id="Sr" onclick="changeColor(this)">Sr</td>
+    <td class="tableelement" id="Y" onclick="changeColor(this)">Y</td>
+    <td class="tableelement" id="Zr" onclick="changeColor(this)">Zr</td>
+    <td class="tableelement" id="Nb" onclick="changeColor(this)">Nb</td>
+    <td class="tableelement" id="Mo" onclick="changeColor(this)">Mo</td>
+    <td class="tableelement" id="Tc" onclick="changeColor(this)">Tc</td>
+    <td class="tableelement" id="Ru" onclick="changeColor(this)">Ru</td>
+    <td class="tableelement" id="Rh" onclick="changeColor(this)">Rh</td>
+    <td class="tableelement" id="Pd" onclick="changeColor(this)">Pd</td>
+    <td class="tableelement" id="Ag" onclick="changeColor(this)">Ag</td>
+    <td class="tableelement" id="Cd" onclick="changeColor(this)">Cd</td>
+    <td class="tableelement" id="In" onclick="changeColor(this)">In</td>
+    <td class="tableelement" id="Sn" onclick="changeColor(this)">Sn</td>
+    <td class="tableelement" id="Sb" onclick="changeColor(this)">Sb</td>
+    <td class="tableelement" id="Te" onclick="changeColor(this)">Te</td>
+    <td class="tableelement" id="I" onclick="changeColor(this)">I</td>
+    <td class="tableelement" id="Xe" onclick="changeColor(this)">Xe</td>
+</tr>
+<tr>
+    <td class="tableelement" id="Cs" onclick="changeColor(this)">Cs</td>
+    <td class="tableelement" id="Ba" onclick="changeColor(this)">Ba</td>
+    <td class="tableelement" id="La" onclick="changeColor(this)">La</td>
+    <td class="tableelement" id="Hf" onclick="changeColor(this)">Hf</td>
+    <td class="tableelement" id="Ta" onclick="changeColor(this)">Ta</td>
+    <td class="tableelement" id="W" onclick="changeColor(this)">W</td>
+    <td class="tableelement" id="Re" onclick="changeColor(this)">Re</td>
+    <td class="tableelement" id="Os" onclick="changeColor(this)">Os</td>
+    <td class="tableelement" id="Ir" onclick="changeColor(this)">Ir</td>
+    <td class="tableelement" id="Pt" onclick="changeColor(this)">Pt</td>
+    <td class="tableelement" id="Au" onclick="changeColor(this)">Au</td>
+    <td class="tableelement" id="Hg" onclick="changeColor(this)">Hg</td>
+    <td class="tableelement" id="Tl" onclick="changeColor(this)">Tl</td>
+    <td class="tableelement" id="Pb" onclick="changeColor(this)">Pb</td>
+    <td class="tableelement" id="Bi" onclick="changeColor(this)">Bi</td>
+    <td class="tableelement" id="Po" onclick="changeColor(this)">Po</td>
+    <td class="tableelement" id="At" onclick="changeColor(this)">At</td>
+    <td class="tableelement" id="Rn" onclick="changeColor(this)">Rn</td>
+</tr>
+<tr>
+    <td class="tableelement" id="Fr" onclick="changeColor(this)">Fr</td>
+    <td class="tableelement" id="Ra" onclick="changeColor(this)">Ra</td>
+    <td class="tableelement" id="Ac" onclick="changeColor(this)">Ac</td>
+    <td class="tableelement" id="Rf" onclick="changeColor(this)">Rf</td>
+    <td class="tableelement" id="Db" onclick="changeColor(this)">Db</td>
+    <td class="tableelement" id="Sg" onclick="changeColor(this)">Sg</td>
+    <td class="tableelement" id="Bh" onclick="changeColor(this)">Bh</td>
+    <td class="tableelement" id="Hs" onclick="changeColor(this)">Hs</td>
+    <td class="tableelement" id="Mt" onclick="changeColor(this)">Mt</td>
+    <td class="tableelement" id="Ds" onclick="changeColor(this)">Ds</td>
+    <td class="tableelement" id="Rg" onclick="changeColor(this)">Rg</td>
+    <td class="tableelement" id="Cn" onclick="changeColor(this)">Cn</td>
+    <td class="tableelement" id="Nh" onclick="changeColor(this)">Nh</td>
+    <td class="tableelement" id="Fl" onclick="changeColor(this)">Fl</td>
+    <td class="tableelement" id="Mc" onclick="changeColor(this)">Mc</td>
+    <td class="tableelement" id="Lv" onclick="changeColor(this)">Lv</td>
+    <td class="tableelement" id="Ts" onclick="changeColor(this)">Ts</td>
+    <td class="tableelement" id="Og" onclick="changeColor(this)">Og</td>
+</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="tableelement" id="Ce" onclick="changeColor(this)">Ce</td>
+    <td class="tableelement" id="Pr" onclick="changeColor(this)">Pr</td>
+    <td class="tableelement" id="Nd" onclick="changeColor(this)">Nd</td>
+    <td class="tableelement" id="Pm" onclick="changeColor(this)">Pm</td>
+    <td class="tableelement" id="Sm" onclick="changeColor(this)">Sm</td>
+    <td class="tableelement" id="Eu" onclick="changeColor(this)">Eu</td>
+    <td class="tableelement" id="Gd" onclick="changeColor(this)">Gd</td>
+    <td class="tableelement" id="Tb" onclick="changeColor(this)">Tb</td>
+    <td class="tableelement" id="Dy" onclick="changeColor(this)">Dy</td>
+    <td class="tableelement" id="Ho" onclick="changeColor(this)">Ho</td>
+    <td class="tableelement" id="Er" onclick="changeColor(this)">Er</td>
+    <td class="tableelement" id="Tm" onclick="changeColor(this)">Tm</td>
+    <td class="tableelement" id="Yb" onclick="changeColor(this)">Yb</td>
+    <td class="tableelement" id="Lu" onclick="changeColor(this)">Lu</td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="tableelement" id="Th" onclick="changeColor(this)">Th</td>
+    <td class="tableelement" id="Pa" onclick="changeColor(this)">Pa</td>
+    <td class="tableelement" id="U" onclick="changeColor(this)">U</td>
+    <td class="tableelement" id="Np" onclick="changeColor(this)">Np</td>
+    <td class="tableelement" id="Pu" onclick="changeColor(this)">Pu</td>
+    <td class="tableelement" id="Am" onclick="changeColor(this)">Am</td>
+    <td class="tableelement" id="Cm" onclick="changeColor(this)">Cm</td>
+    <td class="tableelement" id="Bk" onclick="changeColor(this)">Bk</td>
+    <td class="tableelement" id="Cf" onclick="changeColor(this)">Cf</td>
+    <td class="tableelement" id="Es" onclick="changeColor(this)">Es</td>
+    <td class="tableelement" id="Fm" onclick="changeColor(this)">Fm</td>
+    <td class="tableelement" id="Md" onclick="changeColor(this)">Md</td>
+    <td class="tableelement" id="No" onclick="changeColor(this)">No</td>
+    <td class="tableelement" id="Lr" onclick="changeColor(this)">Lr</td>
+    <td></td>
+</tr>
+</table>
+<table class="elma">
+    <tr class="armut">
+        <td class="muz" style="background-color:red">Alkali Metaller</td>
+        <td class="muz" style="background-color:lightblue">Soygazlar</td>
+        <td class="muz" style="background-color:yellow">Toprak Alkali Metaller</td>
+        <td class="muz" style="background-color:grey">Ametaller</td>
+        <td class="muz" style="background-color:green">Yarı Metaller</td>
+    </tr>
+    <tr class="armut">
+        <td class="muz" style="background-color:orange">Aktinitler</td>
+        <td class="muz" style="background-color:pink">Bilinmeyen</td>
+        <td class="muz" style="background-color:chocolate">Geçiş Metallari</td>
+        <td class="muz" style="background-color:purple">Ara geçiş metallari</td>
+        <td class="muz" style="background-color:darkblue">Lantinitler</td>
+    </tr>
+</table>
+<div class="button-container">
+    <button onclick="checkColors()">Doğru Renkleri Kontrol Et</button>
+</div>
+<div id="result"></div>
+</body>
+
+<script>
+    function changeColor(cell) {
+            if (cell.style.backgroundColor === 'red') {
+                cell.style.backgroundColor = 'lightblue';
+            } else if (cell.style.backgroundColor === 'lightblue') {
+                cell.style.backgroundColor = 'yellow';
+            } else if (cell.style.backgroundColor === 'yellow') {
+                cell.style.backgroundColor = 'grey';
+            } else if (cell.style.backgroundColor === 'grey') {
+                cell.style.backgroundColor = 'green';
+            } else if (cell.style.backgroundColor === 'green') {
+                cell.style.backgroundColor = 'orange';
+            } else if (cell.style.backgroundColor === 'orange') {
+                cell.style.backgroundColor = 'pink';
+            } else if (cell.style.backgroundColor === 'pink') {
+                cell.style.backgroundColor = 'chocolate';
+            } else if (cell.style.backgroundColor === 'chocolate') {
+                cell.style.backgroundColor = 'purple';
+            } else if (cell.style.backgroundColor === 'purple') {
+                cell.style.backgroundColor = 'darkblue';
+            } else if (cell.style.backgroundColor === 'darkblue') {
+                cell.style.backgroundColor = 'red';
+            } else if (cell.style.backgroundColor === 'red') {
+                cell.style.backgroundColor = 'grey';
+            } else if (cell.style.backgroundColor === 'grey') {
+                cell.style.backgroundColor = 'green';
+            } else {
+                cell.style.backgroundColor = 'red';
+            }
+        }
+    const expectedColors = [
+            { ids: ["Li","Na","K","Rb","Cs","Fr"], expectedColor: "red" },
+            { ids: ["He","Ne","Ar","Kr","Xe","Rn"], expectedColor: "lightblue" },
+            { ids: ["Be","Mg","Ca","Sr","Ba","Ra"], expectedColor: "yellow" },
+            { ids: ["C","N","O","F","P","S","Cl","Se","Br","I"], expectedColor: "grey" },
+            { ids: ["B","Si","Ge","As","Sb","Te"],expectedColor: "green" },
+            { ids: ["Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr"], expectedColor: "orange" },
+            { ids: ["Mt","Ds","Rg","Cn","Nh","Fl","Mc","Lv","Ts","Og"], expectedColor: "pink" },
+            { ids: ["Sc","Ti","V","Mn","Fe","Co","Ni","Cu","Zn","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg","Rf","Db","Sg","Bh","Hs"], expectedColor: "chocolate" },
+            { ids: ["Al","Ga","In","Sn","Tl","Pb","Bi","Po","At"],expectedColor: "purple" },
+            { ids: ["La","Ce","Pr","Nd","Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu"],expectedColor: "darkblue" }
+        ];
+        function checkColors() {
+    let result = document.getElementById("result");
+    result.innerHTML = "";
+
+    let correct = true;
+
+    expectedColors.forEach(item => {
+        item.ids.forEach(id => {
+            let cell = document.getElementById(id);
+            if (cell) {
+                // Check if the color matches
+                if (cell.style.backgroundColor !== item.expectedColor) {
+                    result.innerHTML = "<p class='correct'>Yanlış olan renkler var!</p>";
+                    correct = false;
+                }
+            }
+        });
+    });
+
+    if (correct) {
+        result.innerHTML = "<p class='correct'>Tüm renkler doğru!</p>";
+    }
+}
+    </script>
+
+</body>
+</html>
+
+</html>
+
+
+
